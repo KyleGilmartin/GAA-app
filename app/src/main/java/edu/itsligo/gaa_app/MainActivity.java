@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Button logout = findViewById(R.id.logoutBtn);
         FloatingActionButton login = findViewById(R.id.floatingActionButton);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,5 +26,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    public void DoLogin(View view) {
     }
 }
