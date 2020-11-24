@@ -135,7 +135,7 @@ public class Login extends AppCompatActivity {
                 }
 
                 if(documentSnapshot.getString("isStudent") != null){
-                    startActivity(new Intent(getApplicationContext(), User.class));
+                    startActivity(new Intent(getApplicationContext(), edu.itsligo.gaa_app.User.class));
                     finish();
                 }
             }
@@ -190,5 +190,5 @@ public class Login extends AppCompatActivity {
         startActivity(intent);
     }
     {
-}
+    }
 }

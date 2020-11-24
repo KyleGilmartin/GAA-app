@@ -25,6 +25,11 @@ import org.w3c.dom.Text;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.itsligo.gaa_app.GamesFragment;
+import edu.itsligo.gaa_app.Login;
+import edu.itsligo.gaa_app.ProfileFragment;
+import edu.itsligo.gaa_app.R;
+
 public class User extends AppCompatActivity {
 
     private DrawerLayout draw;
