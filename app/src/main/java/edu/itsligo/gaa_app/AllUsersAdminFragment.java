@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,8 @@ public class AllUsersAdminFragment extends Fragment {
     AdapterUsers adapterUsers;
     List<ModelUsers> usersList;
     FirebaseFirestore fStore;
+
+    FirebaseFirestore db;
 
 
     @Nullable
@@ -47,43 +52,67 @@ public class AllUsersAdminFragment extends Fragment {
 
         usersList = new ArrayList<>();
 
+        db= FirebaseFirestore.getInstance();
         getallUsers();
+
 
         return v;
     }
 
     private void getallUsers() {
 
-        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersList.clear();
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    ModelUsers modelUsers = ds.getValue(ModelUsers.class);
+        db.collection("Users").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                   //  get all users excerpt currntly signed in user
-                    if(!modelUsers.getUid().equals(fUser.getUid())){
-                        usersList.add(modelUsers);
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List <DocumentSnapshot> list= queryDocumentSnapshots.getDocuments();
+
+                            for(DocumentSnapshot d:list){
+                                ModelUsers modelUsers = d.toObject(ModelUsers.class);
+                                usersList.add(modelUsers);
+                            }
+                        }
+                        adapterUsers = new AdapterUsers(getActivity(),usersList);
+                        recyclerView.setAdapter(adapterUsers);
                     }
+                });
 
-//                    if (!fUser.getUid().equals(ModelUser.getUid())) {
-//                        userList.add(modelUser);
 
-                    // adapter
-                    adapterUsers = new AdapterUsers(getActivity(),usersList);
-                    //set adapter to recyle view
 
-                    recyclerView.setAdapter(adapterUsers);
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//
+//        FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                usersList.clear();
+//                for(DataSnapshot ds: dataSnapshot.getChildren()){
+//                    ModelUsers modelUsers = ds.getValue(ModelUsers.class);
+//
+//                   //  get all users excerpt currntly signed in user
+//                    if(!modelUsers.getUid().equals(fUser.getUid())){
+//                        usersList.add(modelUsers);
+//                    }
+//
+////                    if (!fUser.getUid().equals(ModelUser.getUid())) {
+////                        userList.add(modelUser);
+//
+//                    // adapter
+//                    adapterUsers = new AdapterUsers(getActivity(),usersList);
+//                    //set adapter to recyle view
+//
+//                    recyclerView.setAdapter(adapterUsers);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
 }
