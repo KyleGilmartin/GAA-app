@@ -12,7 +12,8 @@
         <activity
             android:name=".User"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Admin" />
+        <activity android:name=".Admin"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".MainActivity">
