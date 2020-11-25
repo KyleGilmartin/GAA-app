@@ -45,7 +45,7 @@ public class Admin extends AppCompatActivity {
                         Toast.makeText(Admin.this,"There is no app that ", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(Admin.this,"Please fill out the entore form", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Admin.this,"Please fill out the entire form", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -61,4 +61,10 @@ public class Admin extends AppCompatActivity {
     public void setTraining(View view) {
     } {
 }
+
+    public void doNews(View view) {
+        Intent ToNewsPage = new Intent(view.getContext(), News.class);
+        startActivity(ToNewsPage);
+
+    }
 }

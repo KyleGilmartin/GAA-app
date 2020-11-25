@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GAAapp">
+        <activity android:name=".News"></activity>
         <activity
             android:name=".User"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Admin" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
