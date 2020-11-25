@@ -76,6 +76,7 @@ public class AllUsersAdminFragment extends Fragment {
                         }
                         adapterUsers = new AdapterUsers(getActivity(),usersList);
                         recyclerView.setAdapter(adapterUsers);
+
                     }
                 });
 
