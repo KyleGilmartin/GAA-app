@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,17 +16,17 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class ProfileFragment extends Fragment {
+public class ProfileAdminFragment extends Fragment {
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     TextView uName,uEmail,uPhone;
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.profile_fragment,container,false);
+
+        View v = inflater.inflate(R.layout.fragment_profile_admin, container, false);
+
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -50,17 +49,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
-
-
-
         return v;
     }
-
-
-
-    {
-
-}
 }
