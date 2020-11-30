@@ -64,7 +64,7 @@ public class User extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
-//
+//user
                     NavigationView navigationView = findViewById(R.id.nav_view);
                     View headerView = navigationView.getHeaderView(0);
                     username = (TextView) headerView.findViewById(R.id.usernamePlacehold);
