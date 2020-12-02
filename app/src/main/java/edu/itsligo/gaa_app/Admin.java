@@ -141,9 +141,9 @@ public class Admin extends AppCompatActivity {
 
 
     public void setTraining(View view) {
-     {
-}
-}
+        {
+        }
+    }
 
     public void doLogoutAdmin(View view) {
         FirebaseAuth.getInstance().signOut();
@@ -153,4 +153,3 @@ public class Admin extends AppCompatActivity {
 
 
 }
-
