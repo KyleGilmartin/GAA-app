@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.itsligo.gaa_app">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GAAapp">
-        <activity android:name=".News"></activity>
+        <activity android:name=".SetFixtures"></activity>
+        <activity android:name=".News" />
         <activity
             android:name=".User"
             android:theme="@style/AppTheme.NoActionBar" />
